@@ -24,7 +24,7 @@ function RecruitingCard({ item }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
         <div>
           <div className="display" style={{ fontSize: 15, fontWeight: 700, color: 'var(--cream)' }}>{item.company}</div>
-          <div style={{ fontSize: 12, color: 'var(--cream-muted)', marginTop: 2 }}>{item.role}</div>
+          <div className="display" style={{ fontSize: 12, color: 'var(--cream-muted)', marginTop: 2, fontWeight: 400 }}>{item.role}</div>
         </div>
         <span style={{
           fontSize: 10, fontWeight: 600,
@@ -47,7 +47,7 @@ function RecruitingCard({ item }) {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
         <div>
-          <div style={{ fontSize: 10, color: 'var(--cream-dim)', marginBottom: 3, fontWeight: 600, letterSpacing: '0.5px' }}>NEXT STEP</div>
+          <div className="display" style={{ fontSize: 10, color: 'var(--cream-dim)', marginBottom: 3, fontWeight: 600, letterSpacing: '0.5px' }}>NEXT STEP</div>
           <div style={{ fontSize: 12, color: 'var(--cream)', lineHeight: 1.4 }}>{item.nextStep}</div>
         </div>
         <div style={{ textAlign: 'right' }}>
@@ -65,7 +65,7 @@ export default function Recruiting() {
   return (
     <div className="fade-up" style={{ padding: '24px 28px', overflowY: 'auto', height: '100%' }}>
       <div style={{ marginBottom: 24 }}>
-        <h1 className="display" style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.5px', marginBottom: 4 }}>
+        <h1 className="display" style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.3px', marginBottom: 4 }}>
           Recruiting
         </h1>
         <p style={{ fontSize: 13, color: 'var(--cream-muted)' }}>
@@ -88,8 +88,8 @@ export default function Recruiting() {
             background: 'var(--cream-faint)', border: '0.5px solid var(--border)',
             borderRadius: 'var(--radius-md)', padding: '12px', textAlign: 'center',
           }}>
-            <div style={{ fontSize: 8, color: 'var(--cream-dim)', letterSpacing: '1.5px', marginBottom: 6, fontWeight: 600 }}>{s.label}</div>
-            <div className="display" style={{ fontSize: 22, fontWeight: 800, color: s.color }}>{s.val}</div>
+            <div className="display" style={{ fontSize: 8, color: 'var(--cream-dim)', letterSpacing: '1.5px', marginBottom: 6, fontWeight: 600 }}>{s.label}</div>
+            <div className="metric" style={{ fontSize: 22, fontWeight: 800, color: s.color }}>{s.val}</div>
           </div>
         ))}
       </div>

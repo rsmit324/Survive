@@ -24,8 +24,8 @@ function CourseCard({ c }) {
 
   const scenarios = [
     { label: 'Ace remaining work', val: c.gradeNum + 4, color: 'var(--green)' },
-    { label: 'Do the minimum', val: c.gradeNum, color: 'var(--gold)' },
-    { label: 'Skip stuff', val: c.gradeNum - 6, color: 'var(--red-text)' },
+    { label: 'Do the minimum',     val: c.gradeNum,     color: 'var(--gold)' },
+    { label: 'Skip stuff',         val: c.gradeNum - 6, color: 'var(--red-text)' },
   ];
 
   return (
@@ -38,21 +38,26 @@ function CourseCard({ c }) {
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
         <div>
+          {/* Course name — Space Grotesk (display) */}
           <div className="display" style={{ fontSize: 15, fontWeight: 700, color: 'var(--cream)' }}>{c.name}</div>
-          <div style={{ fontSize: 11, color: 'var(--cream-muted)', marginTop: 2 }}>{c.fullName}</div>
+          {/* Full course name — Space Grotesk (display) */}
+          <div className="display" style={{ fontSize: 11, color: 'var(--cream-muted)', marginTop: 2, fontWeight: 400 }}>{c.fullName}</div>
+          {/* Professor name — Inter (body, inherited) */}
           <div style={{ fontSize: 10, color: 'var(--cream-dim)', marginTop: 2 }}>{c.professor} · {c.credits} credits</div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div className="display" style={{ fontSize: 36, fontWeight: 800, lineHeight: 1, color: gradeColor }}>{c.grade}</div>
+          {/* Grade letter — Sora (metric) */}
+          <div className="metric" style={{ fontSize: 36, fontWeight: 800, lineHeight: 1, color: gradeColor }}>{c.grade}</div>
+          {/* Grade number + trend — Inter (body, inherited) */}
           <div style={{ fontSize: 11, marginTop: 4, color: trendColor }}>{trendIcon} {c.gradeNum}%</div>
         </div>
       </div>
 
       <GradeBar label="Current grade" value={c.gradeNum} color={gradeColor} />
 
-      {/* Scenarios */}
       <div style={{ marginTop: 14 }}>
-        <div style={{ fontSize: 9, color: 'var(--cream-dim)', letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8 }}>PROJECTED OUTCOMES</div>
+        {/* Section label — Space Grotesk via .section-label */}
+        <div style={{ fontSize: 9, color: 'var(--cream-dim)', letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8, fontFamily: 'var(--font-display)' }}>PROJECTED OUTCOMES</div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           {scenarios.map(s => (
             <div key={s.label} style={{
@@ -62,23 +67,25 @@ function CourseCard({ c }) {
               border: '0.5px solid var(--border)',
               borderRadius: 'var(--radius-sm)',
             }}>
+              {/* Scenario label — Inter (body, inherited) */}
               <span style={{ fontSize: 11, color: 'var(--cream-muted)' }}>{s.label}</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: s.color }}>{s.val}%</span>
+              {/* Projected % — Sora (metric) */}
+              <span className="metric" style={{ fontSize: 12, fontWeight: 700, color: s.color }}>{s.val}%</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Upcoming for this course */}
       {courseAssignments.length > 0 && (
         <div style={{ marginTop: 14 }}>
-          <div style={{ fontSize: 9, color: 'var(--cream-dim)', letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8 }}>UPCOMING</div>
+          <div style={{ fontSize: 9, color: 'var(--cream-dim)', letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8, fontFamily: 'var(--font-display)' }}>UPCOMING</div>
           {courseAssignments.map(a => (
             <div key={a.id} style={{
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
               fontSize: 11, padding: '4px 0',
               borderBottom: '0.5px solid var(--border)',
             }}>
+              {/* Assignment name — Inter (body, inherited) */}
               <span style={{ color: 'var(--cream-muted)' }}>{a.name}</span>
               <span style={{ color: 'var(--cream-dim)' }}>{a.weight}%</span>
             </div>
@@ -96,42 +103,46 @@ export default function Grades() {
   return (
     <div className="fade-up" style={{ padding: '24px 28px', overflowY: 'auto', height: '100%' }}>
       <div style={{ marginBottom: 24 }}>
-        <h1 className="display" style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.5px', marginBottom: 4 }}>
+        {/* Page title — Space Grotesk (display) */}
+        <h1 className="display" style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.3px', marginBottom: 4 }}>
           Grades
         </h1>
+        {/* Description — Inter (body, inherited) */}
         <p style={{ fontSize: 13, color: 'var(--cream-muted)' }}>
           Real-time grade tracking with projected outcomes based on your remaining work.
         </p>
       </div>
 
-      {/* GPA row */}
+      {/* GPA / stats row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 24 }}>
         <div style={{
           background: 'var(--gold-dim)', border: '0.5px solid var(--gold-border)',
           borderRadius: 'var(--radius-lg)', padding: '16px', textAlign: 'center',
         }}>
-          <div style={{ fontSize: 9, color: 'var(--gold)', letterSpacing: '1.5px', fontWeight: 700, marginBottom: 8 }}>SEMESTER GPA</div>
-          <div className="display" style={{ fontSize: 36, fontWeight: 800, color: 'var(--gold)' }}>{gpa}</div>
+          <div className="display" style={{ fontSize: 9, color: 'var(--gold)', letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8 }}>SEMESTER GPA</div>
+          {/* GPA — Sora (metric) */}
+          <div className="metric" style={{ fontSize: 36, fontWeight: 800, color: 'var(--gold)' }}>{gpa}</div>
         </div>
         <div style={{
           background: 'var(--cream-faint)', border: '0.5px solid var(--border)',
           borderRadius: 'var(--radius-lg)', padding: '16px', textAlign: 'center',
         }}>
-          <div style={{ fontSize: 9, color: 'var(--cream-dim)', letterSpacing: '1.5px', fontWeight: 700, marginBottom: 8 }}>CREDITS THIS SEM</div>
-          <div className="display" style={{ fontSize: 36, fontWeight: 800, color: 'var(--cream)' }}>{totalCredits}</div>
+          <div className="display" style={{ fontSize: 9, color: 'var(--cream-dim)', letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8 }}>CREDITS THIS SEM</div>
+          {/* Credits — Sora (metric) */}
+          <div className="metric" style={{ fontSize: 36, fontWeight: 800, color: 'var(--cream)' }}>{totalCredits}</div>
         </div>
         <div style={{
           background: 'var(--green-dim)', border: '0.5px solid var(--green-border)',
           borderRadius: 'var(--radius-lg)', padding: '16px', textAlign: 'center',
         }}>
-          <div style={{ fontSize: 9, color: 'var(--green)', letterSpacing: '1.5px', fontWeight: 700, marginBottom: 8 }}>COURSES ON TRACK</div>
-          <div className="display" style={{ fontSize: 36, fontWeight: 800, color: 'var(--green)' }}>
+          <div className="display" style={{ fontSize: 9, color: 'var(--green)', letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8 }}>COURSES ON TRACK</div>
+          {/* On-track count — Sora (metric) */}
+          <div className="metric" style={{ fontSize: 36, fontWeight: 800, color: 'var(--green)' }}>
             {courses.filter(c => c.trend !== 'down').length}/{courses.length}
           </div>
         </div>
       </div>
 
-      {/* Course grid */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
         {courses.map(c => <CourseCard key={c.id} c={c} />)}
       </div>

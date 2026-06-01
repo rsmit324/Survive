@@ -38,7 +38,7 @@ export default function Calendar() {
   return (
     <div className="fade-up" style={{ padding: '24px 28px', overflowY: 'auto', height: '100%' }}>
       <div style={{ marginBottom: 20 }}>
-        <h1 className="display" style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.5px', marginBottom: 4 }}>
+        <h1 className="display" style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.3px', marginBottom: 4 }}>
           Social Calendar
         </h1>
         <p style={{ fontSize: 13, color: 'var(--cream-muted)' }}>
@@ -101,7 +101,7 @@ export default function Calendar() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: 20 }}>
         {/* Events list */}
         <div>
-          <div style={{
+          <div className="display" style={{
             fontSize: 12, fontWeight: 600, color: 'var(--cream)',
             marginBottom: 12, paddingBottom: 10,
             borderBottom: '0.5px solid var(--border)',
@@ -145,7 +145,7 @@ export default function Calendar() {
 
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                        <span style={{ fontSize: 13, fontWeight: 500 }}>{ev.title}</span>
+                        <span className="display" style={{ fontSize: 13, fontWeight: 500 }}>{ev.title}</span>
                         {ev.aiGenerated && (
                           <span style={{ fontSize: 8, color: 'var(--gold)', fontWeight: 700, letterSpacing: '1px' }}>✦ AI SCHEDULED</span>
                         )}

@@ -17,25 +17,29 @@ function SurvivalMeter({ score }) {
       <div style={{
         position: 'absolute', top: 14, right: 18,
         fontFamily: 'var(--font-display)',
-        fontSize: 8, fontWeight: 700, letterSpacing: '2px',
+        fontSize: 8, fontWeight: 600, letterSpacing: '2px',
         color: 'var(--gold)', opacity: 0.4,
       }}>WEEKEND SURVIVAL MODE</div>
 
       <div style={{ display: 'flex', alignItems: 'flex-end', gap: 16, marginBottom: 14 }}>
-        <div className="display" style={{ fontSize: 64, fontWeight: 800, lineHeight: 1, color }}>
+        {/* Survival Score number — Sora (metric) */}
+        <div className="metric" style={{ fontSize: 64, fontWeight: 800, lineHeight: 1, color }}>
           {score}
         </div>
         <div style={{ marginBottom: 10 }}>
-          <div className="display" style={{ fontSize: 14, fontWeight: 700, color: 'var(--cream)' }}>Survival Score</div>
+          {/* "Survival Score" label — Space Grotesk (display) */}
+          <div className="display" style={{ fontSize: 14, fontWeight: 600, color: 'var(--cream)' }}>Survival Score</div>
+          {/* Status label — Inter (body) */}
           <div style={{ fontSize: 11, color, fontWeight: 500 }}>{label}</div>
         </div>
       </div>
 
+      {/* AI summary — Inter (body) */}
       <div style={{
         fontSize: 13, fontStyle: 'italic',
         color: 'var(--cream)', opacity: 0.85,
         borderLeft: '2px solid var(--gold)',
-        paddingLeft: 12, lineHeight: 1.5,
+        paddingLeft: 12, lineHeight: 1.6,
         marginBottom: 16,
       }}>
         {weekendReport.aiSummary}
@@ -81,9 +85,11 @@ function AssignmentRow({ a }) {
     <div className="card" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', cursor: 'pointer' }}>
       <div style={{ width: 8, height: 8, borderRadius: '50%', background: urgencyColors[a.urgency], flexShrink: 0 }} />
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 13, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        {/* Course + assignment name — Space Grotesk (display) */}
+        <div className="display" style={{ fontSize: 13, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {a.course} — {a.name}
         </div>
+        {/* Due date — Inter (body, inherited) */}
         <div style={{ fontSize: 11, color: 'var(--cream-muted)', marginTop: 2 }}>
           Due {dueStr} · {a.weight}% of grade
         </div>
@@ -106,15 +112,17 @@ function GradeCard({ c }) {
   const gradeColor = c.gradeNum >= 90 ? 'var(--green)' : c.gradeNum >= 80 ? 'var(--gold)' : 'var(--orange-text)';
   return (
     <div className="card" style={{ textAlign: 'center', padding: '14px 10px' }}>
-      <div style={{ fontSize: 10, color: 'var(--cream-muted)', marginBottom: 6, fontWeight: 500 }}>{c.name}</div>
-      <div className="display" style={{ fontSize: 26, fontWeight: 800, lineHeight: 1, color: gradeColor }}>{c.grade}</div>
+      {/* Course name — Space Grotesk (display) */}
+      <div className="display" style={{ fontSize: 10, color: 'var(--cream-muted)', marginBottom: 6, fontWeight: 500 }}>{c.name}</div>
+      {/* Grade letter — Sora (metric) */}
+      <div className="metric" style={{ fontSize: 26, fontWeight: 800, lineHeight: 1, color: gradeColor }}>{c.grade}</div>
+      {/* Trend — Inter (body, inherited) */}
       <div style={{ fontSize: 11, marginTop: 5, color: trendColor }}>{trendIcon} {c.trend === 'up' ? 'Improving' : c.trend === 'down' ? 'At risk' : 'Stable'}</div>
     </div>
   );
 }
 
 function TodayAgenda() {
-  const today = new Date().toISOString().split('T')[0];
   const todayEvents = events.filter(e => e.date === '2026-05-29').slice(0, 5);
   const typeConfig = {
     class: { label: 'CLASS', cls: 'tag-class' },
@@ -130,9 +138,12 @@ function TodayAgenda() {
         const cfg = typeConfig[ev.type] || { label: ev.type.toUpperCase(), cls: 'tag-study' };
         return (
           <div key={ev.id} className="card" style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 12px', cursor: 'pointer' }}>
+            {/* Time — Inter (body, inherited) */}
             <div style={{ fontSize: 10, color: 'var(--cream-muted)', minWidth: 44, paddingTop: 2, textAlign: 'right' }}>{ev.time}</div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 12, fontWeight: 500 }}>{ev.title}</div>
+              {/* Event title — Space Grotesk (display) */}
+              <div className="display" style={{ fontSize: 12, fontWeight: 500 }}>{ev.title}</div>
+              {/* Location — Inter (body, inherited) */}
               <div style={{ fontSize: 10, color: 'var(--cream-muted)', marginTop: 2 }}>{ev.location}</div>
               {ev.aiNote && (
                 <div style={{ fontSize: 10, color: 'var(--gold)', marginTop: 3, fontStyle: 'italic' }}>{ev.aiNote}</div>
@@ -154,9 +165,11 @@ export default function Dashboard() {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
         <div>
-          <h1 className="display" style={{ fontSize: 22, fontWeight: 800, color: 'var(--cream)', letterSpacing: '-0.5px' }}>
+          {/* Dashboard title — Space Grotesk (display) */}
+          <h1 className="display" style={{ fontSize: 22, fontWeight: 700, color: 'var(--cream)', letterSpacing: '-0.3px' }}>
             Good morning, {currentUser.name.split(' ')[0]} 👋
           </h1>
+          {/* Subtitle — Inter (body, inherited) */}
           <p style={{ fontSize: 13, color: 'var(--cream-muted)', marginTop: 4 }}>
             Friday, May 29 · Here's what you're dealing with.
           </p>
@@ -172,16 +185,15 @@ export default function Dashboard() {
             fontSize: 12,
             fontWeight: 600,
             cursor: 'pointer',
+            fontFamily: 'var(--font-display)',
           }}>✦ Ask Survive</button>
       </div>
 
       {/* Main grid */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 20 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-          {/* Survival score */}
           <SurvivalMeter score={weekendReport.survivalScore} />
 
-          {/* Assignments */}
           <div>
             <div className="section-label">Upcoming — What actually matters</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -203,8 +215,8 @@ export default function Dashboard() {
             >View all assignments →</button>
           </div>
 
-          {/* Grade forecast */}
           <div>
+            {/* Section header — Space Grotesk via .section-label */}
             <div className="section-label">Grade Forecast — If nothing changes</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
               {courses.map(c => <GradeCard key={c.id} c={c} />)}
@@ -219,7 +231,6 @@ export default function Dashboard() {
             <TodayAgenda />
           </div>
 
-          {/* Weekend survival CTA */}
           <div
             onClick={() => navigate('/survival-report')}
             style={{
@@ -229,9 +240,11 @@ export default function Dashboard() {
               padding: '16px',
               cursor: 'pointer',
             }}>
-            <div className="display" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2px', color: 'var(--red-text)', marginBottom: 8 }}>
+            {/* Card heading — Space Grotesk (display) */}
+            <div className="display" style={{ fontSize: 10, fontWeight: 600, letterSpacing: '1.5px', color: 'var(--red-text)', marginBottom: 8 }}>
               WEEKEND SURVIVAL REPORT →
             </div>
+            {/* Description — Inter (body, inherited) */}
             <p style={{ fontSize: 12, color: 'var(--cream)', opacity: 0.8, lineHeight: 1.5 }}>
               {weekendReport.headline}
             </p>
@@ -240,20 +253,21 @@ export default function Dashboard() {
                 flex: 1, textAlign: 'center',
                 background: 'var(--cream-faint)', borderRadius: 'var(--radius-sm)', padding: '8px',
               }}>
-                <div className="display" style={{ fontSize: 20, fontWeight: 800, color: 'var(--gold)' }}>{weekendReport.funScore}/10</div>
+                {/* Metric number — Sora */}
+                <div className="metric" style={{ fontSize: 20, fontWeight: 800, color: 'var(--gold)' }}>{weekendReport.funScore}/10</div>
                 <div style={{ fontSize: 9, color: 'var(--cream-muted)', marginTop: 2 }}>FUN SCORE</div>
               </div>
               <div style={{
                 flex: 1, textAlign: 'center',
                 background: 'var(--cream-faint)', borderRadius: 'var(--radius-sm)', padding: '8px',
               }}>
-                <div className="display" style={{ fontSize: 20, fontWeight: 800, color: 'var(--red-text)' }}>{weekendReport.hoursNeeded}h</div>
+                {/* Metric number — Sora */}
+                <div className="metric" style={{ fontSize: 20, fontWeight: 800, color: 'var(--red-text)' }}>{weekendReport.hoursNeeded}h</div>
                 <div style={{ fontSize: 9, color: 'var(--cream-muted)', marginTop: 2 }}>STUDY NEEDED</div>
               </div>
             </div>
           </div>
 
-          {/* Quick AI */}
           <div
             onClick={() => navigate('/ai')}
             style={{
@@ -263,10 +277,12 @@ export default function Dashboard() {
               padding: '14px',
               cursor: 'pointer',
             }}>
-            <div className="display" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2px', color: 'var(--gold)', marginBottom: 8 }}>✦ ASK SURVIVE</div>
+            <div className="display" style={{ fontSize: 10, fontWeight: 600, letterSpacing: '1.5px', color: 'var(--gold)', marginBottom: 8 }}>✦ ASK SURVIVE</div>
+            {/* AI prompt example — Inter (body, inherited) */}
             <p style={{ fontSize: 11, color: 'var(--cream-muted)', lineHeight: 1.5 }}>
               "Can I skip Econ Monday if I study all day Sunday?"
             </p>
+            {/* AI response preview — Inter italic */}
             <p style={{ fontSize: 11, color: 'var(--cream)', marginTop: 6, borderLeft: '2px solid var(--gold)', paddingLeft: 8, fontStyle: 'italic', lineHeight: 1.4 }}>
               Probably yes, but check what you're missing first...
             </p>

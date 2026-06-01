@@ -40,9 +40,9 @@ function AssignmentCard({ a, expanded, onToggle }) {
               color: uc.color, background: uc.bg,
               padding: '1px 6px', borderRadius: 4,
             }}>{uc.label}</span>
-            <span style={{ fontSize: 11, color: 'var(--cream-muted)' }}>{a.course}</span>
+            <span className="display" style={{ fontSize: 11, color: 'var(--cream-muted)', fontWeight: 500 }}>{a.course}</span>
           </div>
-          <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--cream)' }}>{a.name}</div>
+          <div className="display" style={{ fontSize: 13, fontWeight: 500, color: 'var(--cream)' }}>{a.name}</div>
           <div style={{ fontSize: 11, color: 'var(--cream-muted)', marginTop: 2 }}>
             Due {dueStr} · {daysUntil <= 0 ? 'TODAY' : daysUntil === 1 ? 'Tomorrow' : `${daysUntil} days`}
           </div>
@@ -112,7 +112,7 @@ export default function Assignments() {
   return (
     <div className="fade-up" style={{ padding: '24px 28px', overflowY: 'auto', height: '100%' }}>
       <div style={{ marginBottom: 20 }}>
-        <h1 className="display" style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.5px', marginBottom: 4 }}>
+        <h1 className="display" style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.3px', marginBottom: 4 }}>
           Assignments
         </h1>
         <p style={{ fontSize: 13, color: 'var(--cream-muted)' }}>
@@ -132,8 +132,8 @@ export default function Assignments() {
             background: 'var(--cream-faint)', border: '0.5px solid var(--border)',
             borderRadius: 'var(--radius-md)', padding: '12px', textAlign: 'center',
           }}>
-            <div style={{ fontSize: 8, color: 'var(--cream-dim)', letterSpacing: '1.5px', marginBottom: 6, fontWeight: 600 }}>{s.label}</div>
-            <div className="display" style={{ fontSize: 22, fontWeight: 800, color: s.color }}>{s.val}</div>
+            <div className="display" style={{ fontSize: 8, color: 'var(--cream-dim)', letterSpacing: '1.5px', marginBottom: 6, fontWeight: 600 }}>{s.label}</div>
+            <div className="metric" style={{ fontSize: 22, fontWeight: 800, color: s.color }}>{s.val}</div>
           </div>
         ))}
       </div>

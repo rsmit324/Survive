@@ -174,7 +174,7 @@ export default function AIChat() {
           <div className="pulse" style={{
             width: 8, height: 8, borderRadius: '50%', background: 'var(--gold)',
           }} />
-          <h1 className="display" style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.3px' }}>
+          <h1 className="display" style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.2px' }}>
             Ask Survive
           </h1>
           <span style={{
