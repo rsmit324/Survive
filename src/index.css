@@ -152,3 +152,12 @@ a { color: inherit; text-decoration: none; }
 .fade-up {
   animation: fadeUp 0.35s ease forwards;
 }
+
+/* ── Landing page responsive ─────────────────── */
+@media (max-width: 900px) {
+  /* hero stacks vertically on mobile */
+}
+
+@media (max-width: 600px) {
+  /* tighten nav on small screens */
+}
